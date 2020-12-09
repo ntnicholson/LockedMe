@@ -44,6 +44,8 @@ public class AppMain {
 				break;
 			case '3':
 				break;
+			case '0':
+				break;
 			default:
 					InvalidInput();
 					break;
