@@ -1,9 +1,16 @@
 package lockedme;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppMain {
+	
+	
+	public static final Path TEMP = Paths.get(System.getProperty("user.dir") + "./FileDirectory");
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -11,6 +18,8 @@ public class AppMain {
 		char choice = 'z';
 		char manage = 'z';
 
+		//Start application
+		Drivers.ApplicationDetails();
 		do {// Main loop
 			Drivers.SystemOptions(); // Get system options
 			choice = in.next().charAt(0);
@@ -18,6 +27,7 @@ public class AppMain {
 			switch (choice) 
 			{
 			case '1':
+				FileHandler.DisplayDirectoryFiles(TEMP);
 				break;
 			case '2':
 				do { // Inner loop
@@ -33,12 +43,12 @@ public class AppMain {
 					else if (manage == 'c') {
 						
 					}
-					else if (manage == 'z') {
+					else if (manage == 'x') {
 						System.out.println("Returning to Main Menu");
 						break;
 					}
 					else {
-						InvalidInput();
+						Drivers.InvalidInput();
 					}
 				} while (manage != 'x');
 				break;
@@ -47,16 +57,36 @@ public class AppMain {
 			case '0':
 				break;
 			default:
-					InvalidInput();
+					Drivers.InvalidInput();
 					break;
 			}
 		} while (choice != '0');
 		
-		System.out.println("Goodbye");
-		System.exit(0);
+		Drivers.CloseApplication();
 	}
-	private static void InvalidInput() {
-		System.out.println("Invalid Input. Please select a different option.");
+
+	public static void printFilePath(String pathname) {
+	    File f = new File(pathname);
+	    System.out.println("File  Name: " + f.getName());
+	    
+	    if (f.exists()) {
+		    if (f.isFile()) {
+		    	System.out.println("File  exists: " + f.exists());
+		    }
+		    else if (f.isDirectory()) {
+		    	System.out.println("Directory  exists: " + f.exists());
+		    }
+	    }
+	    
+	    System.out.println("Absolute Path: " + f.getAbsolutePath());
+
+	    try {
+	      System.out.println("Canonical Path: " + f.getCanonicalPath());
+	    }
+
+	    catch (IOException e) {
+	      e.printStackTrace();
+	    }
 	}
 }
 
