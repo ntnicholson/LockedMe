@@ -10,11 +10,12 @@ import java.util.Scanner;
 public class AppMain {
 	
 	
-	public static final Path TEMP = Paths.get(System.getProperty("user.dir") + "./FileDirectory");
+	public static final Path DEFAULTDIRECTORY = Paths.get(System.getProperty("user.dir") + "./FileDirectory");
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		ArrayList<String> fileList = new ArrayList<>();
+		//ArrayList<String> fileList = new ArrayList<>();
+		ArrayList<Path> fileList = new ArrayList<>();
 		char choice = 'z';
 		char manage = 'z';
 
@@ -27,7 +28,8 @@ public class AppMain {
 			switch (choice) 
 			{
 			case '1':
-				FileHandler.DisplayDirectoryFiles(TEMP);
+				FileHandler.GetDirectoryFiles(DEFAULTDIRECTORY, fileList);
+				FileHandler.DisplayDirectoryFiles(DEFAULTDIRECTORY);
 				break;
 			case '2':
 				do { // Inner loop
@@ -40,8 +42,11 @@ public class AppMain {
 					else if (manage == 'b') {
 						
 					}
-					else if (manage == 'c') {
-						
+					else if (manage == 'c') //Search for file
+					{
+						String path = GetUserInput(in);
+						FileHandler.GetDirectoryFiles(DEFAULTDIRECTORY, fileList);
+						FileHandler.SearchFile(path, fileList);
 					}
 					else if (manage == 'x') {
 						System.out.println("Returning to Main Menu");
@@ -87,6 +92,14 @@ public class AppMain {
 	    catch (IOException e) {
 	      e.printStackTrace();
 	    }
+	}
+	
+	public static String GetUserInput(Scanner s) {
+		System.out.println("Input the name and extension of the file you want to search for: ");
+		String path = s.next();
+		
+		return path;
+		
 	}
 }
 
