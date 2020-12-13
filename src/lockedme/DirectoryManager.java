@@ -6,6 +6,7 @@ import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,21 +58,24 @@ public class DirectoryManager
 	}
 	public static void ChangeCurrentDirectory(UserDirectory dir) 
 	{
-		Scanner n = new Scanner(System.in);
-		String change = n.next();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Input the path of the new directory: ");
+		String change = in.next();
 		
 		File x = new File(change);
-		
+		Path p = Paths.get(x.toURI());
+		//System.out.println("Path: " + p.toString());
+	
 		if (x.isDirectory()) 
 		{
 			dir.setUserDirectory(x.toPath());
+			System.out.println("The Current Working Directory has been changed to: " + dir.getUserDirectory().toString());
 		}
 		else 
 		{
 			System.out.println("Error: Your input is not a valid directory.");
 		}
 		
-		n.close();
 	}
 
 }
