@@ -1,11 +1,14 @@
-package lockedme;
+package com.lockedme.business.rules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.lockedme.business.data.UserDirectory;
 import com.lockedme.interfaces.IApplicationInterface;
 import com.lockedme.interfaces.IUserInteraction;
+
+import lockedme.AppMain;
 
 public class Drivers implements IApplicationInterface, IUserInteraction
 {
@@ -72,6 +75,7 @@ public class Drivers implements IApplicationInterface, IUserInteraction
 			}
 		} while (choice != '0');
 		
+		in.close();
 		Drivers.CloseApplication();
 	}
 	public static void ApplicationDetails() 

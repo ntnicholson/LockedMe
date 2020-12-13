@@ -1,10 +1,12 @@
-package lockedme;
+package com.lockedme.business.rules;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
+
+import com.lockedme.business.data.UserDirectory;
 
 
 public class FileHandler {

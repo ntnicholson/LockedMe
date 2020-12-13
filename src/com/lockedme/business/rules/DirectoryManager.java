@@ -1,17 +1,36 @@
-package lockedme;
+package com.lockedme.business.rules;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.lockedme.business.data.UserDirectory;
+
+import lockedme.AppMain;
+
 public class DirectoryManager 
 {
+	public static void GenerateTempDirectory() 
+	{
+		try
+		{
+			Files.createDirectory(AppMain.DEFAULTDIRECTORY);
+			
+		}catch(NoSuchFileException x) {
+			x.printStackTrace();	
+		}catch(IOException x) {
+			x.printStackTrace();
+		}catch(Exception x) {
+			x.printStackTrace();
+		}
+	}
 	public static void GetDirectoryFiles(UserDirectory dir, ArrayList<Path> arrList) 
 	{
 		
@@ -22,25 +41,24 @@ public class DirectoryManager
 			for (Path file : stream) 
 			{
 				arrList.add(file);
-				//System.out.println(file.getFileName());
 			}
 		} catch (IOException | DirectoryIteratorException x) {
 			System.err.println(x);
 		}
 	}
+	
 	public static void DisplayDirectoryFiles(UserDirectory dir) 
 	{
 		CurrentWorkingDirectory(dir);
 		
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir.getUserDirectory())) 
 		{
-			
 			for (Path file : stream) 
 			{
-				System.out.println(file.getFileName());
+				System.out.println(file.getFileName());				
 			}
 		} catch (IOException | DirectoryIteratorException x) {
-			System.err.println(x);
+			System.out.println(x);
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package lockedme;
+package com.lockedme.business.data;
 
 import java.nio.file.Path;
 
