@@ -11,6 +11,7 @@ public class AppMain {
 	public static final Path DEFAULTDIRECTORY = Paths.get(System.getProperty("user.dir") + "./TempDirectory");
 	
 	static {
+
 		DirectoryManager.GenerateTempDirectory(); //Create temp working directory
 	}
 

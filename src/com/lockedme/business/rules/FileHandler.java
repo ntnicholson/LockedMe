@@ -37,7 +37,7 @@ public class FileHandler {
 		}catch (FileNotFoundException x) {
 			System.out.println("File " + fileName + " was not found.");
 		}catch (IOException x) {
-			System.out.println("Error creating file: " + x.toString());
+			System.out.println("Error deleting file: " + x.toString());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

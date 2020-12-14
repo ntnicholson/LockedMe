@@ -40,26 +40,26 @@ public class Drivers implements IApplicationInterface, IUserInteraction
 					if (manage == 'a') {//Create a file
 						String createFile = Drivers.GetUserFileName(in);
 						FileHandler.CreateFile(currentDirectory, createFile);
-						break;
+						continue;
 					} 
 					else if (manage == 'b') {//Delete a file
 						String deleteFile = Drivers.GetUserFileName(in);
 						FileHandler.DeleteFile(currentDirectory, deleteFile);
-						break;
+						continue;
 					}
 					else if (manage == 'c') //Search for file
 					{
 						String path = Drivers.GetUserFileName(in);
 						DirectoryManager.GetDirectoryFiles(currentDirectory, fileList);
 						FileHandler.SearchFile(currentDirectory, path, fileList);
-						break;
+						continue;
 					}
 					else if (manage == 'x') {
 						System.out.println("Returning to Main Menu");
 						break;
 					}
 					else {
-						Drivers.InvalidInput();
+						InvalidInput();
 						break;
 					}
 				} while (manage != 'x');
@@ -70,13 +70,13 @@ public class Drivers implements IApplicationInterface, IUserInteraction
 			case '0':
 				break;
 			default:
-					Drivers.InvalidInput();
+					InvalidInput();
 					break;
 			}
 		} while (choice != '0');
 		
 		in.close();
-		Drivers.CloseApplication();
+		CloseApplication();
 	}
 	public static void ApplicationDetails() 
 	{

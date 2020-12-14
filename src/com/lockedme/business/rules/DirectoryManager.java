@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -24,8 +25,11 @@ public class DirectoryManager
 			Files.createDirectory(AppMain.DEFAULTDIRECTORY);
 			
 		}catch(NoSuchFileException x) {
-			x.printStackTrace();	
-		}catch(IOException x) {
+			x.printStackTrace();
+		}catch(FileAlreadyExistsException x) {
+			x.printStackTrace();
+		}
+		catch(IOException x) {
 			x.printStackTrace();
 		}catch(Exception x) {
 			x.printStackTrace();
